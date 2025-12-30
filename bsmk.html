@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCMK Enterprises | Premium Glass & Aluminium Solutions in Zambia</title>
+    <meta name="description" content="BCMK Enterprises - Your trusted partner for premium glass and aluminium solutions. Expert installation, competitive pricing, and quality materials in Lusaka, Zambia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: 256 77% 60%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 217 91% 60%;
+            --secondary-foreground: 0 0% 100%;
+            --background: 0 0% 100%;
+            --foreground: 222 47% 11%;
+            --card: 0 0% 100%;
+            --card-foreground: 222 47% 11%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 215 16% 47%;
+            --accent: 256 77% 97%;
+            --border: 214 32% 91%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: hsl(var(--foreground));
+            background: hsl(var(--background));
+            line-height: 1.6;
+        }
+
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Gradient Utilities */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+        }
+
+        .bg-gradient-hero {
+            background: linear-gradient(180deg, hsl(256 77% 98%), hsl(var(--background)));
+        }
+
+        .bg-gradient-card {
+            background: linear-gradient(180deg, hsl(var(--background)), hsl(256 77% 99%));
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(12deg); }
+            50% { transform: translateY(-20px) rotate(12deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: all 0.3s;
+            padding: 1rem 0;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: hsl(var(--foreground));
+        }
+
+        /* Slightly smaller logo for better balance */
+        .logo-img,
+        .footer-logo-img {
+            width: 44px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            background: transparent;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            transition: transform 200ms ease;
+        }
+
+        .logo:hover .logo-img { transform: scale(1.02); }
+
+        /* Image logo */
+        .logo-img,
+        .footer-logo-img {
+            width: 56px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            background: transparent;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: hsl(var(--foreground));
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            color: white;
+            box-shadow: 0 10px 30px -10px hsla(var(--primary), 0.4);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px -10px hsla(var(--primary), 0.5);
+        }
+
+        .btn-hero {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            box-shadow: 0 10px 30px -10px hsla(var(--primary), 0.4);
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid hsl(var(--border));
+            color: hsl(var(--foreground));
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-outline:hover {
+            border-color: hsl(var(--primary));
+            color: hsl(var(--primary));
+        }
+
+        .btn-cta {
+            background: hsl(var(--foreground));
+            color: hsl(var(--background));
+            font-size: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .menu-toggle {
+            display: block;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: hsl(var(--foreground));
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: hsl(var(--card));
+            border-top: 1px solid hsl(var(--border));
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: hsl(var(--accent));
+            color: hsl(var(--foreground));
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links { display: flex; }
+            .menu-toggle { display: none; }
+            .header-cta { display: block; }
+        }
+
+        .header-cta {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, 
+                hsla(var(--background), 0.95), 
+                hsla(var(--background), 0.8), 
+                hsla(var(--background), 0.4));
+        }
+
+        .hero-shape {
+            position: absolute;
+            border: 1px solid hsla(var(--primary), 0.3);
+            border-radius: 16px;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .hero-shape-1 {
+            top: 33%;
+            right: 25%;
+            width: 80px;
+            height: 80px;
+            transform: rotate(12deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-shape-2 {
+            bottom: 33%;
+            left: 25%;
+            width: 64px;
+            height: 64px;
+            transform: rotate(-12deg);
+            border-color: hsla(var(--secondary), 0.3);
+            animation: float 6s ease-in-out infinite 1s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 768px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(6px);
+            border: 1px solid hsla(var(--primary), 0.12);
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: hsl(var(--primary));
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-badge-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            letter-spacing: 0.01em;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 0 10px 28px rgba(0,0,0,0.45);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            max-width: 576px;
+            line-height: 1.8;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid hsla(var(--border), 0.5);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: #ebe6e6;          /* dark gray */
+        }
+
+        @media (min-width: 640px) {
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 { font-size: 3.75rem; }
+            .hero-subtitle { font-size: 1.25rem; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: hsl(var(--foreground));
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 64px;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: hsl(var(--muted-foreground));
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .section-title { font-size: 2.25rem; }
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: hsl(var(--card));
+        }
+
+        .benefits-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .benefit-card {
+            position: relative;
+            background: hsl(var(--card));
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid hsl(var(--border));
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: hsl(var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+
+        .benefit-icon svg {
+            width: 28px;
+            height: 28px;
+            color: hsl(var(--primary));
+        }
+
+        .benefit-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-desc {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .benefits-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Products Section */
+        .products {
+            background: linear-gradient(180deg, hsl(var(--background)), hsl(256 77% 99%));
+        }
+
+        .products-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .product-card {
+            position: relative;
+            background: hsl(var(--card));
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid hsl(var(--border));
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-icon.primary { color: hsl(var(--primary)); }
+        .product-icon.secondary { color: hsl(var(--secondary)); }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+            margin-bottom: 1.5rem;
+        }
+
+        .product-list {
+            list-style: none;
+        }
+
+        .product-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-list li svg {
+            width: 20px;
+            height: 20px;
+            color: hsl(var(--secondary));
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Offers Section */
+        .offers {
+            background: linear-gradient(180deg, hsl(256 77% 98%), hsl(var(--background)));
+        }
+
+        .offers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .offer-card {
+            background: hsl(var(--card));
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .offer-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-card.secondary { border-color: hsl(var(--secondary)); }
+        .offer-card.primary { border-color: hsl(var(--primary)); }
+
+        .offer-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .offer-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: hsl(var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .offer-icon svg {
+            width: 24px;
+            height: 24px;
+            color: hsl(var(--secondary));
+        }
+
+        .offer-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-desc {
+            color: hsl(var(--muted-foreground));
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: hsl(var(--card));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            position: relative;
+            background: linear-gradient(180deg, hsl(var(--background)), hsl(256 77% 99%));
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid hsl(var(--primary));
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-quote-icon {
+            width: 32px;
+            height: 32px;
+            color: hsla(var(--secondary), 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            color: hsl(var(--muted-foreground));
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: hsl(var(--primary));
+        }
+
+        .testimonial-role {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Quote Form Section */
+        .quote-section {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-decorative {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background: hsla(var(--primary-foreground), 0.1);
+            border-radius: 50%;
+            filter: blur(48px);
+            pointer-events: none;
+        }
+
+        .quote-decorative-1 {
+            top: 25%;
+            right: -80px;
+        }
+
+        .quote-decorative-2 {
+            bottom: 25%;
+            left: -80px;
+        }
+
+        .quote-header {
+            max-width: 512px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .quote-header h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .quote-header p {
+            color: hsla(0, 0%, 100%, 0.8);
+        }
+
+        @media (min-width: 640px) {
+            .quote-header h2 { font-size: 2.25rem; }
+        }
+
+        .quote-form {
+            max-width: 448px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .quote-form input,
+        .quote-form select,
+        .quote-form textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: none;
+            border-radius: 12px;
+            background: hsla(0, 0%, 100%, 0.95);
+            color: hsl(var(--foreground));
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .quote-form input::placeholder,
+        .quote-form textarea::placeholder {
+            color: hsl(var(--muted-foreground));
+        }
+
+        .quote-form input:focus,
+        .quote-form select:focus,
+        .quote-form textarea:focus {
+            box-shadow: 0 0 0 3px hsla(0, 0%, 100%, 0.3);
+        }
+
+        .quote-form textarea {
+            min-height: 96px;
+            resize: none;
+        }
+
+        /* Footer */
+        footer {
+            background: hsl(var(--foreground));
+            color: hsl(var(--muted));
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-logo-text strong {
+            font-size: 1.2rem; /* Bigger text */
+        }   
+
+      .footer-tagline {
+            color: #eeeaea;
+            font-size: 0.8rem; /* Smaller text */
+        }
+
+
+        .footer-desc {
+            color: hsla(var(--muted-foreground), 0.8);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: hsla(var(--primary), 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--secondary));
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-contact a,
+        .footer-contact span {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: hsla(var(--muted-foreground), 0.8);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact a:hover {
+            color: hsl(var(--secondary));
+        }
+
+        .footer-contact svg {
+            width: 16px;
+            height: 16px;
+            color: hsl(var(--secondary));
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: hsla(var(--muted-foreground), 0.8);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: hsl(var(--secondary));
+        }
+
+        .footer-copyright {
+            border-top: 1px solid hsla(var(--primary-foreground), 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: hsla(var(--muted-foreground), 0.6);
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: hsl(var(--card));
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid hsl(var(--primary));
+            z-index: 100;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-title {
+            font-weight: 600;
+            color: hsl(var(--foreground));
+            margin-bottom: 0.25rem;
+        }
+
+        .toast-desc {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">
+                    <picture>
+                        <source srcset="images/logo-1x.webp 1x, images/logo-2x.webp 2x" type="image/webp">
+                        <source srcset="images/logo-1x.png 1x, images/logo-2x.png 2x" type="image/png">
+                        <img src="images/logo-1x.png" alt="BCMK logo" class="logo-img">
+                    </picture>
+                    <span class="logo-text font-heading">BCMK</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#products" class="nav-link">Products</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="header-cta">
+                    <a href="#quote" class="btn btn-gradient">Get Quote</a>
+                </div>
+                <button class="menu-toggle" onclick="toggleMobileMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </nav>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" onclick="closeMobileMenu()">About Us</a>
+                <a href="#products" onclick="closeMobileMenu()">Products</a>
+                <a href="#services" onclick="closeMobileMenu()">Services</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+                <a href="#quote" class="btn btn-gradient" style="margin-top: 0.5rem; text-align: center;" onclick="closeMobileMenu()">Get Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80" alt="Premium glass and aluminium building facade">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge animate-fade-in-up">
+                        <span class="hero-badge-dot"></span>
+                        <span class="hero-badge-text">Premium Quality Since 2015</span>
+                    </div>
+                    <h1 class="font-heading animate-fade-in-up" style="animation-delay: 0.1s;">
+                        Premium <span class="text-gradient">Glass & Aluminium</span> Solutions
+                    </h1>
+                    <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 0.2s;">
+                        Elevate your space with our high-quality materials and expert installation services. From residential to commercial projects, we deliver excellence with precision and professionalism.
+                    </p>
+                    <div class="hero-buttons animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <a href="#quote" class="btn btn-hero">
+                            Get Free Quote
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Contact Us
+                        </a>
+                    </div>
+                    <div class="hero-stats animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value text-gradient font-heading">100+</div>
+                            <div class="hero-stat-label">Projects Completed</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value text-gradient font-heading">10+</div>
+                            <div class="hero-stat-label">Years Experience</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value text-gradient font-heading">100%</div>
+                            <div class="hero-stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title font-heading">Why Choose BCMK?</h2>
+                    <p class="section-subtitle">We Provide Your Essential Needs.<br>
+                        We combine excellence with innovation to deliver outstanding results.</p>
+                
+                    <div class="benefit-card animate-fade-in-up">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+                        </div>
+                        <h3 class="benefit-title font-heading">Premium Quality</h3>
+                        <p class="benefit-desc">We source only the finest glasses and aluminium materials from trusted suppliers worldwide.</p>
+                    </div>
+                    <div class="benefit-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
+                        </div>
+                        <h3 class="benefit-title font-heading">Expert Teams</h3>
+                        <p class="benefit-desc">Our certified technicians bring years of experience and precision to every project.</p>
+                    </div>
+                    <div class="benefit-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3 class="benefit-title font-heading">Competitive Pricing</h3>
+                        <p class="benefit-desc">Best value in the market without compromising on quality or service standards.</p>
+                    </div>
+                    <div class="benefit-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3 class="benefit-title font-heading">On-Time Delivery</h3>
+                        <p class="benefit-desc">Fast, reliable service with timely installation to meet all your project deadlines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products" id="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title font-heading">Our Products & Services</h2>
+                    <p class="section-subtitle">Complete solutions for all your glass and aluminium needs</p>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card animate-fade-in-up">
+                        <svg class="product-icon secondary" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                        <h3 class="product-title font-heading">Premium Glass Solutions</h3>
+                        <ul class="product-list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Tempered Glass (Safety & Durability)</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Laminated Glass (Security & Soundproofing)</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Frosted Glass (Privacy & Aesthetics)</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Mirror Glass (Decorative & Functional)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <svg class="product-icon primary" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+                        <h3 class="product-title font-heading">Aluminium Systems</h3>
+                        <ul class="product-list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Aluminium Window Frames</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Aluminium Door Systems</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Shower Enclosures</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Structural Profiles</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <svg class="product-icon secondary" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        <h3 class="product-title font-heading">Installation & Support</h3>
+                        <ul class="product-list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Professional Installation</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Custom Cutting & Fitting</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Maintenance Services</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Emergency Repairs</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="offers" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title font-heading">Special Offers</h2>
+                    <p class="section-subtitle">Limited time promotions for our valued customers</p>
+                </div>
+                <div class="offers-list">
+                    <div class="offer-card secondary animate-fade-in-up">
+                        <div class="offer-content">
+                            <div class="offer-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="offer-title font-heading">✨ Free Professional Consultation</h3>
+                                <p class="offer-desc">Get expert advice for your glass and aluminium projects at no cost!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offer-card primary animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="offer-content">
+                            <div class="offer-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="offer-title font-heading">✨ 24/7 Emergency Repair Services</h3>
+                                <p class="offer-desc">We're here for you anytime, anywhere with rapid response.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title font-heading">What Our Customers Say</h2>
+                    <p class="section-subtitle">Join hundreds of satisfied clients across the region</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-fade-in-up">
+                        <svg class="testimonial-quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                        <p class="testimonial-text">"BCMK's professionalism and attention to detail is exceptional. They completed our roofing sheets installation flawlessly—strong, secure, and leak-free!"</p>
+                        <p class="testimonial-author font-heading">Stanley Tembo</p>
+                        <p class="testimonial-role">Property Manager</p>
+                    </div>
+                    <div class="testimonial-card animate-fade-in-up" style="animation-delay: 0.15s;">
+                        <svg class="testimonial-quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                        <p class="testimonial-text">"Outstanding quality and service! Their glass installation transformed our office space. The team was efficient, courteous, and delivered ahead of schedule."</p>
+                        <p class="testimonial-author font-heading">Obed Chibesa</p>
+                        <p class="testimonial-role">Business Owner</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Form Section -->
+        <section class="quote-section" id="quote">
+            <div class="quote-decorative quote-decorative-1"></div>
+            <div class="quote-decorative quote-decorative-2"></div>
+            <div class="container">
+                <div class="quote-header">
+                    <h2 class="font-heading">Get an Instant Quote!</h2>
+                    <p>Fill in your project details and we'll provide a competitive quote within 24 hours</p>
+                </div>
+                <form class="quote-form" id="quoteForm" onsubmit="handleFormSubmit(event)">
+                    <input type="text" placeholder="Your Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="" disabled selected>Select Your Service</option>
+                        <option value="Glass Installation">Glass Installation</option>
+                        <option value="Aluminium Window Systems">Aluminium Window Systems</option>
+                        <option value="Custom Glass Cutting">Custom Glass Cutting</option>
+                        <option value="Repair & Maintenance">Repair & Maintenance</option>
+                        <option value="Shower Enclosures">Shower Enclosures</option>
+                    </select>
+                    <textarea placeholder="Project Details (optional)"></textarea>
+                    <button type="submit" class="btn btn-cta">
+                        Get Your Free Quote
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <picture>
+                            <source srcset="images/logo-1x.webp 1x, images/logo-2x.webp 2x" type="image/webp">
+                            <source srcset="images/logo-1x.png 1x, images/logo-2x.png 2x" type="image/png">
+                            <img src="images/logo-1x.png" alt="BCMK logo" class="footer-logo-img">
+                        </picture>
+                        <div class="footer-logo-text font-heading">
+                            <strong>BCMK Enterprises</strong><br>
+                            <p class="footer-tagline">We Provide Your Essential Needs</p>
+                        </div>
+
+                    </div>
+                    <p class="footer-desc">Your trusted partner for premium glass and aluminium solutions. We deliver excellence with every project.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title font-heading">Get In Touch</h3>
+                    <div class="footer-contact">
+                        <a href="tel:+260000000000">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            +260 763230498
+                        </a>
+                        <a href="mailto:info@bcmk.co.zm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            info@bcmk.co.zm
+                        </a>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Ndola, Zambia
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title font-heading">Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#products">Products & Services</a>
+                        <a href="#quote">Get Quote</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© <script>document.write(new Date().getFullYear())</script> BCMK Enterprises. All Rights Reserved. | Premium Glass & Aluminium Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-title">Quote Request Received!</div>
+        <div class="toast-desc">We'll contact you within 24 hours with your quote.</div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('active');
+        }
+
+        // Form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            e.target.reset();
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
