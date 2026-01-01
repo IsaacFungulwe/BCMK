@@ -1,0 +1,23 @@
+{
+  "name": "bcmk",
+  "version": "1.0.0",
+  "description": "This repository contains a single-page static website for BCMK Enterprises (glass & aluminium solutions).",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacFungulwe/BCMK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacFungulwe/BCMK/issues"
+  },
+  "homepage": "https://github.com/IsaacFungulwe/BCMK#readme",
+  "devDependencies": {
+    "puppeteer": "^24.34.0"
+  }
+}
