@@ -56,7 +56,7 @@
       window.__contactWidgetLoaded = true;
       try{
         if(typeof window.mountContactCard === 'function'){
-          window.mountContactCard(window.React, window.ReactDOM, 'react-controls');
+          window.mountContactCard('react-controls');
         }
       }catch(e){ console.error('mountContactCard failed', e); }
     };

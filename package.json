@@ -4,7 +4,10 @@
   "description": "This repository contains a single-page static website for BCMK Enterprises (glass & aluminium solutions).",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,13 @@
   },
   "homepage": "https://github.com/IsaacFungulwe/BCMK#readme",
   "devDependencies": {
-    "puppeteer": "^24.34.0"
+    "puppeteer": "^24.34.0",
+    "rollup": "^3.29.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "postcss": "^8.4.32",
+    "cssnano": "^5.1.15",
+    "rimraf": "^5.0.0"
   }
 }

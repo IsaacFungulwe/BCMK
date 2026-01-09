@@ -48,12 +48,11 @@ URL="file:///$(pwd)/bsmk.html" node smokecheck.js
 Notes and next steps
 
 - The React code is small and runs via the production UMD bundles; no build step is required.
-- If you'd like a production build without any CDN dependencies, I can convert the React code to a small vanilla JS widget or add a build step to prebundle and minify the component.
-- I can also extract any inline scripts into a separate JS file if you prefer.
+
+
 
 Next steps you might want
 
-- Minify `app.js` and `styles.css` or add a simple npm build using Rollup + Terser — I can scaffold this if you want production assets.
 - Move `contact.js` into a small build step so it can be tree-shaken/minified separately.
 
 If you want any copy/text changes, visual refinements, or to add analytics or offline support, tell me which you'd like next.
