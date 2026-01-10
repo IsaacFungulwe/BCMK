@@ -43,31 +43,82 @@
     document.querySelectorAll('.animate-fade-in-up').forEach(function(el){ observer.observe(el); });
   }
 
-  // Load the contact widget conditionally by injecting contact.js
-  function loadContactWidget(){
-    // Example condition: only load on wider screens (desktop/tablet) or when explicitly requested via ?contact=1
-    var shouldLoad = (window.innerWidth && window.innerWidth > 480) || location.search.indexOf('contact=1') !== -1;
-    if(!shouldLoad) return;
-    if(window.__contactWidgetLoaded) return;
-    var script = document.createElement('script');
-    script.src = 'contact.js';
-    script.async = true;
-    script.onload = function(){
-      window.__contactWidgetLoaded = true;
-      try{
-        if(typeof window.mountContactCard === 'function'){
-          window.mountContactCard('react-controls');
-        }
-      }catch(e){ console.error('mountContactCard failed', e); }
-    };
-    script.onerror = function(e){ console.error('Failed to load contact.js', e); };
-    document.head.appendChild(script);
+  // Modern theme toggle: mount a compact toggle into #react-controls
+  function mountThemeToggle(){
+    var mount = document.getElementById('react-controls');
+    if(!mount) return;
+    if(mount.dataset.themeMounted === '1') return;
+
+    function getStored(){ try{ return localStorage.getItem('bcmk-theme'); }catch(e){ return null; } }
+    function prefersDark(){ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
+    function current(){ return getStored() || (prefersDark() ? 'dark' : 'light'); }
+    function applyTheme(t){
+      document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : '');
+      try{ localStorage.setItem('bcmk-theme', t); }catch(e){}
+    }
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'theme-toggle-advanced';
+    btn.setAttribute('aria-label', 'Toggle color theme');
+    btn.setAttribute('aria-pressed', current() === 'dark' ? 'true' : 'false');
+
+    btn.innerHTML = `
+      <span class="icon sun" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="4" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.2">
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.5" y1="4.5" x2="6" y2="6"/>
+            <line x1="17.5" y1="17.5" x2="19" y2="19"/>
+            <line x1="17.5" y1="6" x2="19" y2="4"/>
+            <line x1="4.5" y1="19" x2="6" y2="17"/>
+          </g>
+        </svg>
+      </span>
+      <span class="icon moon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/>
+        </svg>
+      </span>
+    `;
+
+    function setState(){
+      var t = current();
+      if(t === 'dark'){
+        btn.classList.add('is-dark');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('is-dark');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    }
+
+    btn.addEventListener('click', function(){
+      var t = current() === 'dark' ? 'light' : 'dark';
+      document.documentElement.classList.add('theme-transition');
+      window.setTimeout(function(){ document.documentElement.classList.remove('theme-transition'); }, 300);
+      applyTheme(t);
+      setState();
+    });
+
+    // initialize
+    applyTheme(current());
+    setState();
+
+    mount.appendChild(btn);
+    mount.dataset.themeMounted = '1';
   }
 
   // Initialize on DOM ready
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', function(){ initYear(); setupHeaderScroll(); setupObserver(); loadContactWidget(); });
+    document.addEventListener('DOMContentLoaded', function(){ initYear(); setupHeaderScroll(); setupObserver(); mountThemeToggle(); });
   } else {
-    initYear(); setupHeaderScroll(); setupObserver(); loadContactWidget();
+    initYear(); setupHeaderScroll(); setupObserver(); mountThemeToggle();
   }
 })();
+
+

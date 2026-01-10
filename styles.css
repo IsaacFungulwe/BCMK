@@ -582,21 +582,27 @@ footer { background: hsl(var(--foreground)); color: hsl(var(--muted)); padding: 
     --secondary: 217 91% 60%;
 }
 
-/* Theme toggle styles */
-.theme-toggle { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid hsla(var(--border), 0.12); padding: 0.25rem 0.5rem; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
-.theme-toggle .switch { width: 44px; height: 24px; background: linear-gradient(135deg, hsl(var(--muted)), hsl(var(--card))); border-radius: 999px; position: relative; flex-shrink: 0; }
-.theme-toggle .knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.2s ease; }
-:root[data-theme="dark"] .theme-toggle .knob { transform: translateX(20px); background: #111827; }
+/* Modern theme toggle styles */
+html.theme-transition { transition: background-color 250ms ease, color 250ms ease; }
+
+.theme-toggle-advanced { display: inline-grid; place-items: center; background: transparent; border: none; padding: 6px; width: 44px; height: 44px; border-radius: 10px; cursor: pointer; transition: background 200ms ease, transform 200ms ease; }
+.theme-toggle-advanced:focus { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; }
+
+.theme-toggle-advanced .icon { position: absolute; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; transition: transform 280ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease; color: hsl(var(--foreground)); }
+.theme-toggle-advanced .icon.sun { transform: rotate(0deg) scale(1); opacity: 1; }
+.theme-toggle-advanced .icon.moon { transform: rotate(-15deg) scale(.8); opacity: 0; }
+.theme-toggle-advanced.is-dark { background: rgba(255,255,255,0.03); transform: scale(0.98); }
+.theme-toggle-advanced.is-dark .icon.sun { transform: rotate(15deg) scale(.8); opacity: 0; }
+.theme-toggle-advanced.is-dark .icon.moon { transform: rotate(0deg) scale(1); opacity: 1; color: hsl(var(--foreground)); }
+
+/* subtle hover */
+.theme-toggle-advanced:hover { transform: translateY(-2px); background: rgba(0,0,0,0.02); }
+
+/* keep react-floating spacing */
 .react-floating { display: inline-flex; align-items: center; gap: 0.5rem; padding-left: 0.5rem; }
 
-/* Contact card styles */
-.contact-card { display: flex; align-items: center; gap: 0.75rem; background: hsl(var(--card)); color: hsl(var(--card-foreground)); padding: 0.5rem 0.75rem; border-radius: 12px; border: 1px solid hsl(var(--border)); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-.contact-card .contact-card-content { display: flex; flex-direction: column; gap: 0.25rem; }
-.contact-title { font-weight: 700; font-size: 0.95rem; color: hsl(var(--foreground)); }
-.contact-line { font-size: 0.9rem; color: hsl(var(--muted-foreground)); }
-.contact-link { color: inherit; text-decoration: none; transition: color 0.15s; }
-.contact-link:hover { color: hsl(var(--primary)); }
-.contact-actions { display: flex; align-items: center; }
+/* Provide a little breathing room in the header floating area */
+.react-floating { display: inline-flex; align-items: center; gap: 0.5rem; padding-left: 0.5rem; }
 
 @media (min-width: 1024px) { .react-floating { padding-left: 1rem; } }
 

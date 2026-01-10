@@ -50,9 +50,4 @@ Notes and next steps
 - The React code is small and runs via the production UMD bundles; no build step is required.
 
 
-
-Next steps you might want
-
-- Move `contact.js` into a small build step so it can be tree-shaken/minified separately.
-
 If you want any copy/text changes, visual refinements, or to add analytics or offline support, tell me which you'd like next.
