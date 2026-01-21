@@ -1,9 +1,16 @@
 <?php
 
-// Only allow POST requests
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Always return JSON
+header('Content-Type: application/json');
+
+// Allow only POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
         'message' => 'Method not allowed'
@@ -11,14 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-header('Content-Type: application/json');
-
-// Helper function to sanitize input
+// Sanitize helper
 function clean($value) {
     return trim(htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8'));
 }
 
-// Collect and sanitize inputs
+// Collect inputs
 $name    = clean($_POST['name'] ?? '');
 $email   = clean($_POST['email'] ?? '');
 $phone   = clean($_POST['phone'] ?? '');
@@ -35,7 +40,7 @@ if ($name === '' || $email === '' || $phone === '' || $service === '') {
     exit;
 }
 
-// Validate email format
+// Validate email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(422);
     echo json_encode([
@@ -45,38 +50,46 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Email settings
-$to = 'info@bcmk.co.zm'; // CHANGE to your receiving email
-$subject = 'New Quote Request - BCMK';
+$mail = new PHPMailer(true);
 
-// Build email body
-$body = "You have received a new quote request:\n\n";
-$body .= "Name: $name\n";
-$body .= "Email: $email\n";
-$body .= "Phone: $phone\n";
-$body .= "Service: $service\n\n";
-$body .= "Message:\n$message\n";
+try {
+    // SMTP CONFIGURATION (cPanel email)
+    $mail->isSMTP();
+    $mail->Host       = 'mail.bcmk.co.zm';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'no-reply@bcmk.co.zm';
+    $mail->Password = getenv('SMTP_PASS');
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-// Email headers
-$headers = [
-    'From' => 'BCMK Website <no-reply@bcmk.co.zm>',
-    'Reply-To' => $email,
-    'Content-Type' => 'text/plain; charset=UTF-8'
-];
+    // Email setup
+    $mail->setFrom('no-reply@bcmk.co.zm', 'BCMK Website');
+    $mail->addAddress('info@bcmk.co.zm');
+    $mail->addReplyTo($email, $name);
 
-// Send email
-$sent = mail($to, $subject, $body, $headers);
+    // Email content
+    $mail->isHTML(false);
+    $mail->Subject = 'New Quote Request - BCMK Enterprises';
 
-// Respond to frontend
-if ($sent) {
+    $mail->Body =
+        "You have received a new quote request:\n\n" .
+        "Name: {$name}\n" .
+        "Email: {$email}\n" .
+        "Phone: {$phone}\n" .
+        "Service: {$service}\n\n" .
+        "Message:\n{$message}\n";
+
+    $mail->send();
+
     echo json_encode([
         'success' => true,
         'message' => 'Your message has been sent successfully.'
     ]);
-} else {
+
+} catch (Exception $e) {
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'message' => 'Failed to send message. Please try again later.'
+        'message' => 'Message could not be sent. Please try again later.'
     ]);
 }

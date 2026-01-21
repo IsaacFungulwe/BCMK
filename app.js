@@ -24,14 +24,37 @@
     var menu = document.getElementById('mobileMenu');
     if(menu) menu.classList.remove('active');
   };
+window.handleFormSubmit = function (e) {
+  e.preventDefault();
 
-  window.handleFormSubmit = function(e){
-    e.preventDefault();
-    var toast = document.getElementById('toast');
-    if(toast) toast.classList.add('show');
-    if(e.target && typeof e.target.reset === 'function') e.target.reset();
-    setTimeout(function(){ if(toast) toast.classList.remove('show'); }, 4000);
-  };
+  var form = e.target;
+  var toast = document.getElementById('toast');
+
+  var formData = new FormData(form);
+
+  fetch('/api/contact.php', {
+    method: 'POST',
+    body: formData
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success) {
+        if (toast) toast.classList.add('show');
+        form.reset();
+        setTimeout(function () {
+          if (toast) toast.classList.remove('show');
+        }, 4000);
+      } else {
+        alert(data.message || 'Failed to send message.');
+      }
+    })
+    .catch(function () {
+      alert('Network error. Please try again.');
+    });
+};
+
 
   function setupObserver(){
     var observer = new IntersectionObserver(function(entries){
