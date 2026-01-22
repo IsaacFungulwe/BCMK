@@ -26,33 +26,35 @@
   };
 window.handleFormSubmit = function (e) {
   e.preventDefault();
-
   var form = e.target;
+  var btn = form.querySelector('button');
+  var originalBtnText = btn.textContent;
   var toast = document.getElementById('toast');
+
+  // Disable button to prevent double clicks
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
 
   var formData = new FormData(form);
 
-  fetch('/api/contact.php', {
-    method: 'POST',
+  fetch('API/contact.php', {    method: 'POST',
     body: formData
   })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data.success) {
-        if (toast) toast.classList.add('show');
-        form.reset();
-        setTimeout(function () {
-          if (toast) toast.classList.remove('show');
-        }, 4000);
-      } else {
-        alert(data.message || 'Failed to send message.');
-      }
-    })
-    .catch(function () {
-      alert('Network error. Please try again.');
-    });
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      if (toast) toast.classList.add('show');
+      form.reset();
+      setTimeout(() => { if (toast) toast.classList.remove('show'); }, 4000);
+    } else {
+      alert(data.message || 'Failed to send message.');
+    }
+  })
+  .catch(() => alert('Network error. Please try again.'))
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
+  });
 };
 
 
